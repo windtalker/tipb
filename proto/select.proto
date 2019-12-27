@@ -109,6 +109,8 @@ message DAGRequest {
 enum EncodeType {
 	TypeDefault = 0;
 	TypeArrow = 1;
+	// TypeCHBlock is used by TiSpark and TiFlash, in this encode mode, TiFlash will encode the data using native ch block format
+	TypeCHBlock = 2;
 }
 
 message StreamResponse {
