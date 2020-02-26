@@ -21,6 +21,7 @@ enum ExecType {
 	TypeTopN = 4;
 	TypeLimit = 5;
 	TypeStreamAgg = 6;
+	TypeJoin = 7;
 }
 
 // It represents a Executor.
@@ -33,12 +34,22 @@ message Executor {
 	optional TopN topN = 6;
 	optional Limit limit = 7;
 	optional Aggregation stream_agg= 8;
+	optional Join join = 9;
 }
 
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
+	optional int64 engine = 4 [(gogoproto.nullable) = false]; // local, tikv, tiflash
+}
+
+message Join {
+	required int64 join_type = 1;
+	required int64 join_exec_type = 2;
+	required Executor build_exec = 3;
+	required Executor probe_exec = 4;
+	required Expr join_cond = 5;
 }
 
 message IndexScan {
