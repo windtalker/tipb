@@ -44,12 +44,23 @@ message TableScan {
 	optional int64 engine = 4 [(gogoproto.nullable) = false]; // local, tikv, tiflash
 }
 
+enum JoinType {
+	TypeInnerJoin = 0;
+	TypeLeftOuterJoin = 1;
+	TypeRightOuterJoin = 2;
+}
+
+enum JoinExecType {
+	TypeHashJoin = 0;
+}
+
 message Join {
-	required int64 join_type = 1;
-	required int64 join_exec_type = 2;
-	required Executor build_exec = 3;
-	required Executor probe_exec = 4;
-	required Expr join_cond = 5;
+	required JoinType join_type = 1;
+	required JoinExecType join_exec_type = 2;
+	repeated Executor children = 3;
+	required int64 inner_idx = 4; // 0 or 1
+	required Expr LeftJoinKeys = 5;
+	required Expr RightJoinKeys = 6;
 }
 
 message IndexScan {
