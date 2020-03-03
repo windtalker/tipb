@@ -63,10 +63,11 @@ enum JoinExecType {
 message Join {
 	optional JoinType join_type = 1 [(gogoproto.nullable) = false];
 	optional JoinExecType join_exec_type = 2 [(gogoproto.nullable) = false];
-	repeated Executor children = 3;
-	optional int64 inner_idx = 4 [(gogoproto.nullable) = false]; // 0 or 1
-	repeated Expr LeftJoinKeys = 5;
-	repeated Expr RightJoinKeys = 6;
+	repeated Executor left_children = 3;
+	repeated Executor right_children = 4;
+	optional int64 inner_idx = 5 [(gogoproto.nullable) = false]; // 0 or 1
+	repeated Expr left_join_keys = 6;
+	repeated Expr right_join_keys = 7;
 }
 
 message IndexScan {
