@@ -47,7 +47,7 @@ message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
-	optional EngineType next_read_engine = 4 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
+	optional EngineType next_read_engine = 4; // which engine we should in next step, only used by tiflash
 }
 
 enum JoinType {
@@ -61,12 +61,12 @@ enum JoinExecType {
 }
 
 message Join {
-	required JoinType join_type = 1;
-	required JoinExecType join_exec_type = 2;
-	repeated Executor children = 3;
-	required int64 inner_idx = 4; // 0 or 1
-	required Expr LeftJoinKeys = 5;
-	required Expr RightJoinKeys = 6;
+	optional JoinType join_type = 1 [(gogoproto.nullable) = false];
+	optional JoinExecType join_exec_type = 2 [(gogoproto.nullable) = false];
+	repeated Executor children = 3 [(gogoproto.nullable) = false];
+	optional int64 inner_idx = 4 [(gogoproto.nullable) = false]; // 0 or 1
+	optional Expr LeftJoinKeys = 5 [(gogoproto.nullable) = false];
+	optional Expr RightJoinKeys = 6 [(gogoproto.nullable) = false];
 }
 
 message IndexScan {
