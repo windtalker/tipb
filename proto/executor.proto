@@ -37,11 +37,17 @@ message Executor {
 	optional Join join = 9;
 }
 
+enum EngineType {
+	Local = 0;
+	TiKV = 1;
+	TiFlash = 2;
+}
+
 message TableScan {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
-	optional int64 engine = 4 [(gogoproto.nullable) = false]; // local, tikv, tiflash
+	optional EngineType next_read_engine = 4 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
 }
 
 enum JoinType {
