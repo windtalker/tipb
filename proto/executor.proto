@@ -65,8 +65,8 @@ message Join {
 	optional JoinExecType join_exec_type = 2 [(gogoproto.nullable) = false];
 	repeated Executor children = 3 [(gogoproto.nullable) = false];
 	optional int64 inner_idx = 4 [(gogoproto.nullable) = false]; // 0 or 1
-	optional Expr LeftJoinKeys = 5 [(gogoproto.nullable) = false];
-	optional Expr RightJoinKeys = 6 [(gogoproto.nullable) = false];
+	repeated Expr LeftJoinKeys = 5 [(gogoproto.nullable) = false];
+	repeated Expr RightJoinKeys = 6 [(gogoproto.nullable) = false];
 }
 
 message IndexScan {
