@@ -81,14 +81,14 @@ message Selection {
 	// Where conditions.
 	repeated Expr conditions = 1;
 	repeated RpnExpr rpn_conditions = 2;
-	optional Executor children = 3;
+	optional Executor child = 3;
 }
 
 message Projection {
 	// Projection expressions.
 	repeated Expr exprs = 1;
 	repeated RpnExpr rpn_exprs = 2;
-	optional Executor children = 3;
+	optional Executor child = 3;
 }
 
 message Aggregation {
@@ -100,20 +100,20 @@ message Aggregation {
 	repeated RpnExpr rpn_agg_func = 5;
 	// If it is a stream aggregation.
 	optional bool streamed = 3 [(gogoproto.nullable) = false];
-	optional Executor children = 6;
+	optional Executor child = 6;
 }
 
 message TopN {
 	// Order by clause.
 	repeated ByItem order_by = 1;
 	optional uint64 limit = 2 [(gogoproto.nullable) = false];
-	optional Executor children = 3;
+	optional Executor child = 3;
 }
 
 message Limit {
 	// Limit the result to be returned.
 	optional uint64 limit = 1 [(gogoproto.nullable) = false];
-	optional Executor children = 2;
+	optional Executor child = 2;
 }
 
 message ExecutorExecutionSummary {
