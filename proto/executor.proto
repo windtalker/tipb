@@ -48,6 +48,7 @@ message TableScan {
 	repeated ColumnInfo columns = 2;
 	optional bool desc = 3 [(gogoproto.nullable) = false];
 	optional EngineType next_read_engine = 4 [(gogoproto.nullable) = false]; // which engine we should in next step, only used by tiflash
+    repeated KeyRange ranges = 5 [(gogoproto.nullable) = false];
 }
 
 enum JoinType {
