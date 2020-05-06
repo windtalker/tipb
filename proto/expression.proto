@@ -226,6 +226,10 @@ enum ScalarFuncSig {
 	PlusIntUnsignedSigned = 220;
 	PlusIntSignedUnsigned = 221;
 	PlusIntSignedSigned = 222;
+	ModIntUnsignedUnsigned = 223;
+	ModIntUnsignedSigned = 224;
+	ModIntSignedUnsigned = 225;
+	ModIntSignedSigned = 226;
 
 	
 	/*math*/
@@ -307,6 +311,12 @@ enum ScalarFuncSig {
 	DecimalIsFalse = 3127;
 	LeftShift = 3129;
 	RightShift = 3130;
+	IntIsTrueWithNull = 3142;
+	RealIsTrueWithNull = 3143;
+	DecimalIsTrueWithNull = 3144;
+	IntIsFalseWithNull = 3145;
+	RealIsFalseWithNull = 3146;
+	DecimalIsFalseWithNull = 3147;
 
 	/*other*/
 	BitCount = 3128;
