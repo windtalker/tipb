@@ -77,9 +77,9 @@ message Join {
 	// used by TiFlash join when new collation is enabled.
 	repeated FieldType probe_types = 7;
 	repeated FieldType build_types = 8;
-	repeated Expr left_condition = 9;
-	repeated Expr right_condition = 10;
-	repeated Expr other_condition = 11;
+	repeated Expr left_conditions = 9;
+	repeated Expr right_conditions = 10;
+	repeated Expr other_conditions = 11;
 }
 
 message IndexScan {
