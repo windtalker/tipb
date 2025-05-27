@@ -40,6 +40,7 @@ enum ExecType {
 	TypeBroadcastQuery = 17;
 	TypeCTESink = 18;
 	TypeCTESource = 19;
+	TypeVersionedLookup = 20; // used by TiCI's double read
 }
 
 // It represents a Executor.
@@ -67,6 +68,7 @@ message Executor {
 	optional BroadcastQuery broadcast_query = 21;
 	optional CTESink cte_sink = 22;
 	optional CTESource cte_source = 23;
+	optional VersionedLookup versioned_lookup= 24;
 }
 
 enum ExchangeType {
