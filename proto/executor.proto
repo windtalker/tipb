@@ -257,8 +257,7 @@ message VersionedLookup {
 	optional int64 table_id = 1 [(gogoproto.nullable) = false];
 	repeated ColumnInfo columns = 2;
 	repeated int64 primary_column_ids = 3;
-	repeated int64 primary_prefix_column_ids = 4;
-	repeated uint64 versions = 5;
+	repeated uint64 versions = 4;
 }
 
 message PartitionTableScan {
