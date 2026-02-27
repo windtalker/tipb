@@ -211,6 +211,11 @@ message Join {
 	repeated Expr other_eq_conditions_from_in = 12;
 	optional bool is_null_aware_semi_join = 13;
 	repeated RuntimeFilter runtime_filter_list = 14; // only used by TiFlash
+	// Per join key comparison mode for TiFlash hash join.
+	// - false: normal equality semantics (=), NULL never matches anything (including NULL).
+	// - true: null-safe equality semantics (<=>), NULL matches NULL.
+	// Length must be either 0 (not set, treated as all false) or equal to join key size.
+	repeated bool is_null_eq = 15;
 }
 
 message RuntimeFilter {
@@ -470,4 +475,3 @@ message Expand2{
 	repeated string generated_output_names = 2;  // for output names for generated cols like grouping_id etc, like "gen_col1", "gen_col2" here
 	optional Executor child = 3;
 }
-
