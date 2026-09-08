@@ -1305,6 +1305,18 @@
                 "integer": 2
               }
             ]
+          },
+          {
+            "name": "TiFlashHashTableSizeKind",
+            "enum_fields": [
+              {
+                "name": "TIFLASH_HASH_TABLE_SIZE_KIND_DISTINCT_KEY_COUNT"
+              },
+              {
+                "name": "TIFLASH_HASH_TABLE_SIZE_KIND_BUILD_ROW_COUNT",
+                "integer": 1
+              }
+            ]
           }
         ],
         "messages": [
@@ -3930,13 +3942,19 @@
             "fields": [
               {
                 "id": 1,
-                "name": "ndv",
+                "name": "size",
                 "type": "uint64",
                 "optional": true
               },
               {
                 "id": 2,
-                "name": "bytes",
+                "name": "size_kind",
+                "type": "TiFlashHashTableSizeKind",
+                "optional": true
+              },
+              {
+                "id": 3,
+                "name": "memory_bytes",
                 "type": "uint64",
                 "optional": true
               }

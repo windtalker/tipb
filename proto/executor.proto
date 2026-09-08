@@ -734,10 +734,21 @@ message BroadcastQuery {
 	optional string query = 1;
 }
 
+enum TiFlashHashTableSizeKind {
+	// HashJoin V1 reports the number of distinct build-side keys.
+	TIFLASH_HASH_TABLE_SIZE_KIND_DISTINCT_KEY_COUNT = 0;
+
+	// HashJoin V2 reports the number of build-side rows.
+	TIFLASH_HASH_TABLE_SIZE_KIND_BUILD_ROW_COUNT = 1;
+}
+
 message TiFlashHashTableStats {
-	// Number of distinct keys in the hash table.
-	optional uint64 ndv = 1;
+	// The hash table size. Its meaning is defined by size_kind.
+	optional uint64 size = 1;
+
+	// HashJoin V1 uses DISTINCT_KEY_COUNT; HashJoin V2 uses BUILD_ROW_COUNT.
+	optional TiFlashHashTableSizeKind size_kind = 2;
 
 	// Bytes occupied by the hash table and its key/value storage.
-	optional uint64 bytes = 2;
+	optional uint64 memory_bytes = 3;
 }
